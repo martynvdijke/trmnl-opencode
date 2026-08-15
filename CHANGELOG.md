@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/martynvdijke/trmnl-opencode/compare/v1.0.0...v1.0.1) (2026-08-15)
+
+
+### Bug Fixes
+
+* **trmnl:** shorten plugin description and surface timezone in templates ([4fe713a](https://github.com/martynvdijke/trmnl-opencode/commit/4fe713a68957f3b3d80ff09b18c1745c12686df0))
+
 # 1.0.0 (2026-08-15)
 
 
