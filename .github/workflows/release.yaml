@@ -120,7 +120,7 @@ jobs:
           fi
 
           echo "::warning::No plugin ID set in src/settings.yml. Creating a new TRMNL plugin..."
-          output=$(trmnlp push --force 2>&1)
+          output=$(trmnlp push --force 2>&1 || true)
           echo "$output"
           new_id=$(printf '%s\n' "$output" | grep -oE '/plugin_settings/[0-9]+/edit' | grep -oE '[0-9]+' | tail -1)
           if [ -n "$new_id" ]; then
