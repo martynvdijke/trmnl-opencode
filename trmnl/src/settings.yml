@@ -50,5 +50,5 @@ custom_fields:
   placeholder: Europe/Amsterdam
   help_text: 'Used to bucket sessions by local hour and day'
 name: OpenCode Usage
-description: 'Hourly, weekly and monthly OpenCode usage and token spend'
+description: 'OpenCode usage and token spend'
 refresh_interval: 60
