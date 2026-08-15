@@ -1,0 +1,39 @@
+<div class="layout layout--col gap">
+  {% if error %}
+    <div class="item">
+      <div class="content">
+        <span class="value value--medium">{{ error }}</span>
+      </div>
+    </div>
+  {% else %}
+    <div class="item">
+      <div class="content">
+        <span class="value value--large">{{ totals[0].sessions }}</span>
+      </div>
+      <div class="meta">
+        <span class="label">sessions today · {{ totals[0].cost_display }} · {{ totals[0].tokens_display }}</span>
+      </div>
+    </div>
+    <div class="hr"></div>
+    <div class="item">
+      {% for day in daily %}
+        <div class="meta">
+          <span class="label">{{ day.label }} · {{ day.sessions }} · {{ day.cost_display }}</span>
+        </div>
+      {% endfor %}
+    </div>
+    {% if models.size > 0 %}
+      <div class="hr"></div>
+      <div class="item">
+        {% for model in models %}
+          <div class="meta">
+            <span class="label">{{ model.name }} · {{ model.cost_display }} ({{ model.pct }}%)</span>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endif %}
+  <div class="title_bar">
+    <span class="title">OpenCode Usage · {{ generated_at }}</span>
+  </div>
+</div>

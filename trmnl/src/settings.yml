@@ -1,0 +1,54 @@
+---
+strategy: polling
+no_screen_padding: 'no'
+dark_mode: 'no'
+static_data: ''
+polling_verb: get
+framework_version: 2.3.7
+serverless_language: python
+polling_url: "{{url}}/api/session?limit=10000"
+polling_headers: 'Authorization=Bearer {{api_key}}'
+polling_body: ''
+id:
+oauth_enabled: 'false'
+oauth_pkce_enabled: 'no'
+oauth_authorize_url: ''
+oauth_token_url: ''
+oauth_scopes: ''
+oauth_scope_separator: ''
+oauth_refresh_url: ''
+oauth_auth_params: ''
+oauth_token_headers: ''
+oauth_token_site: ''
+oauth_token_params: ''
+oauth_token_request_auth_method: ''
+oauth_body_format: ''
+oauth_token_response_metadata: ''
+oauth_authorization_method: ''
+oauth_refresh_params: ''
+oauth_token_field_name: ''
+oauth_expiry_field_name: ''
+oauth_expiry_strategy: ''
+oauth_fixed_expiry_ms: ''
+custom_fields:
+- keyname: url
+  field_type: url
+  name: Address of the OpenCode server
+  description: URL
+  placeholder: https://opencode.vandijke.xyz
+  help_text: Please include http:// or https://
+- keyname: api_key
+  field_type: text
+  name: OpenCode server password
+  description: API token
+  placeholder: Your OpenCode server password
+  help_text: 'Only needed if you set OPENCODE_SERVER_PASSWORD on the server'
+- keyname: timezone
+  field_type: text
+  name: Timezone
+  description: IANA timezone name
+  placeholder: Europe/Amsterdam
+  help_text: 'Used to bucket sessions by local hour and day'
+name: OpenCode Usage
+description: 'Hourly, weekly and monthly OpenCode usage and token spend'
+refresh_interval: 60

@@ -1,0 +1,56 @@
+<div class="layout layout--col gap">
+  {% if error %}
+    <div class="item">
+      <div class="content">
+        <span class="value value--medium">{{ error }}</span>
+      </div>
+    </div>
+  {% else %}
+    <div class="columns">
+      <div class="column">
+        <span class="value value--medium">{{ totals[0].sessions }}</span>
+        <div class="meta">
+          <span class="label">today · {{ totals[0].cost_display }}</span>
+        </div>
+      </div>
+      <div class="column">
+        <span class="value value--medium">{{ totals[1].sessions }}</span>
+        <div class="meta">
+          <span class="label">7 days · {{ totals[1].cost_display }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column">
+        <span class="value value--medium">{{ totals[2].sessions }}</span>
+        <div class="meta">
+          <span class="label">30 days · {{ totals[2].cost_display }}</span>
+        </div>
+      </div>
+      <div class="column">
+        <span class="value value--medium">{{ totals[3].sessions }}</span>
+        <div class="meta">
+          <span class="label">all time · {{ totals[3].cost_display }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="hr"></div>
+    <div class="item">
+      <span class="value value--small">Streams (all time)</span>
+      <div class="meta">
+        <span class="label">input {{ streams.input_display }} · output {{ streams.output_display }}</span>
+      </div>
+      <div class="meta">
+        <span class="label">reasoning {{ streams.reasoning_display }} · cache read {{ streams.cache_read_display }}</span>
+      </div>
+      {% if models.size > 0 %}
+        <div class="meta">
+          <span class="label">top: {{ models[0].name }} {{ models[0].cost_display }}</span>
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+  <div class="title_bar">
+    <span class="title">OpenCode Usage · {{ generated_at }}</span>
+  </div>
+</div>

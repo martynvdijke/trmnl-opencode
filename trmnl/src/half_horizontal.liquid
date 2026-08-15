@@ -1,0 +1,56 @@
+<div class="layout layout--row gap">
+  {% if error %}
+    <div class="columns">
+      <div class="column">
+        <span class="value value--medium">{{ error }}</span>
+      </div>
+    </div>
+  {% else %}
+    <div class="columns">
+      <div class="column">
+        <span class="value value--large">{{ totals[0].sessions }}</span>
+        <div class="meta">
+          <span class="label">sessions today</span>
+        </div>
+        <div class="meta">
+          <span class="label">{{ totals[0].cost_display }}</span>
+        </div>
+        <div class="meta">
+          <span class="label">{{ totals[0].tokens_display }} tokens</span>
+        </div>
+      </div>
+      <div class="column">
+        <span class="value value--medium">{{ totals[2].sessions }}</span>
+        <div class="meta">
+          <span class="label">sessions in 30 days</span>
+        </div>
+        <div class="meta">
+          <span class="label">{{ totals[2].cost_display }}</span>
+        </div>
+        <div class="meta">
+          <span class="label">{{ totals[2].tokens_display }} tokens</span>
+        </div>
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column">
+        {% for hour in hourly %}
+          <div class="meta">
+            <span class="label">{{ hour.label }} · {{ hour.sessions }}</span>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="column">
+        <span class="value value--small">Last 24h spend</span>
+        {% for hour in hourly %}
+          <div class="bar">
+            <div class="bar__fill" style="width: {{ hour.pct }}%"></div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+  <div class="title_bar">
+    <span class="title">OpenCode Usage · {{ generated_at }}</span>
+  </div>
+</div>
