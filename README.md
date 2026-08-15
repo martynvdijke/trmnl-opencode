@@ -47,6 +47,9 @@ via `trmnlp push`.
 ## TRMNL plugin setup
 
 1. Create a new plugin in the TRMNL dashboard (or push via `trmnlp push`).
+   After the first plugin is created, copy its numeric ID into `trmnl/src/settings.yml`:
+   `id: <plugin-id>`. This makes later pushes update the same plugin instead of
+   creating another one.
 2. Set the custom fields:
    - **url** — your OpenCode server address, e.g. `https://opencode.vandijke.xyz`
      (or `http://<host>:4096` when running `opencode web`).
