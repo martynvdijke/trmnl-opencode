@@ -38,11 +38,15 @@ def _tz(name):
     return datetime.timezone.utc
 
 
-def _resolved_tz_name(name, tz):
-    """Name actually used (UTC if the configured zone could not be loaded)."""
-    if isinstance(tz, datetime.timezone) and tz is not datetime.timezone.utc:
-        return "UTC"
-    return _text(name) or "UTC"
+def _resolved_tz_name(name):
+    """The name actually used; UTC if the configured zone could not be loaded."""
+    if ZoneInfo is not None:
+        try:
+            ZoneInfo(_text(name) or "UTC")
+            return _text(name) or "UTC"
+        except Exception:
+            pass
+    return "UTC"
 
 
 def _cost(session):
@@ -245,7 +249,7 @@ def run(input_data):
     tz = _tz(timezone)
     now_utc = datetime.datetime.now(datetime.timezone.utc)
     now_local = now_utc.astimezone(tz)
-    resolved_timezone = _resolved_tz_name(timezone, tz)
+    resolved_timezone = _resolved_tz_name(timezone)
 
     total_agg = _aggregate(data)
     if total_agg["sessions"] == 0:
