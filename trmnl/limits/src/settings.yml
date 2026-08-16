@@ -9,7 +9,7 @@ serverless_language: python
 polling_url: 'https://opencode.ai/zen/go/v1/usage'
 polling_headers: 'Authorization=Bearer {{api_key}}'
 polling_body: ''
-id:
+id: 444197
 oauth_enabled: 'false'
 oauth_pkce_enabled: 'no'
 oauth_authorize_url: ''
