@@ -167,5 +167,9 @@ def run(input_data):
 
 
 if __name__ == "__main__":
-    payload = json.load(sys.stdin)
+    raw = sys.stdin.read()
+    try:
+        payload = json.loads(raw) if raw.strip() else {}
+    except json.JSONDecodeError:
+        payload = {}
     print(json.dumps(run(payload)))

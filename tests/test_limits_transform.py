@@ -6,12 +6,15 @@ Run with: python3 tests/test_limits_transform.py
 import importlib.util
 import json
 import os
+import subprocess
 import unittest
 
 _LIMITS_DIR = os.path.join(os.path.dirname(__file__), "..", "trmnl", "limits", "src")
 _spec = importlib.util.spec_from_file_location(
     "limits_transform", os.path.join(_LIMITS_DIR, "transform.py")
 )
+assert _spec is not None
+assert _spec.loader is not None
 transform = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(transform)
 
@@ -99,6 +102,18 @@ class LimitsTransformTest(unittest.TestCase):
     def test_api_key_flag(self):
         self.assertTrue(transform.run(_input(api_key="sk-123"))["api_key_set"])
         self.assertFalse(transform.run(_input(api_key=""))["api_key_set"])
+
+    def test_empty_stdin_returns_error_payload(self):
+        # Simulates a poll that returned an empty body (e.g. 401 from an
+        # unset api_key custom field) — must not crash like json.load did.
+        script = os.path.join(_LIMITS_DIR, "transform.py")
+        for raw in ("", "<html>401 Unauthorized</html>"):
+            proc = subprocess.run(
+                ["python3", script], input=raw, capture_output=True, text=True
+            )
+            self.assertEqual(proc.returncode, 0, proc.stderr)
+            out = json.loads(proc.stdout)
+            self.assertIn("error", out)
 
 
 if __name__ == "__main__":
