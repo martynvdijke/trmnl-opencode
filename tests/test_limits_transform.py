@@ -50,6 +50,23 @@ class LimitsTransformTest(unittest.TestCase):
             self.assertEqual(item["status_label"], "OK")
             self.assertEqual(item["level"], "success")
 
+    def test_parses_top_level_api_response(self):
+        out = transform.run(
+            {
+                "usage": _load_fixture()["usage"],
+                "trmnl": {
+                    "plugin_settings": {
+                        "custom_fields_values": {
+                            "api_key": "sk-test",
+                            "timezone": "UTC",
+                        }
+                    }
+                },
+            }
+        )
+        self.assertNotIn("error", out)
+        self.assertEqual(out["worst_label"], "Weekly")
+
     def test_worst_is_highest_percent(self):
         out = transform.run(_input())
         self.assertEqual(out["worst_label"], "Weekly")

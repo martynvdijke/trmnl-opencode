@@ -134,7 +134,12 @@ def run(input_data):
         pass
 
     data = input_data.get("data") if isinstance(input_data, dict) else None
-    usage = data.get("usage") if isinstance(data, dict) else None
+    if isinstance(data, dict) and isinstance(data.get("usage"), dict):
+        usage = data["usage"]
+    else:
+        # Object responses are kept at the top level by TRMNL. Array
+        # responses are wrapped under `data`, so accept both shapes.
+        usage = input_data.get("usage") if isinstance(input_data, dict) else None
     if not isinstance(usage, dict) or not any(k in usage for k in LIMIT_ORDER):
         return {
             "error": "Could not read usage limits from OpenCode Go. Check the api_key custom field."
