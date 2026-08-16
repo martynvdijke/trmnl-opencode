@@ -1,3 +1,10 @@
+## [1.1.6](https://github.com/martynvdijke/trmnl-opencode/compare/v1.1.5...v1.1.6) (2026-08-16)
+
+
+### Bug Fixes
+
+* **trmnl:** stretch usage layouts ([0fe5bbb](https://github.com/martynvdijke/trmnl-opencode/commit/0fe5bbb1a82d2c3371d07d3b80a45e1ed3a7c8fa))
+
 ## [1.1.5](https://github.com/martynvdijke/trmnl-opencode/compare/v1.1.4...v1.1.5) (2026-08-16)
 
 
