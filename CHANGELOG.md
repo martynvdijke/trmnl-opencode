@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/martynvdijke/trmnl-opencode/compare/v1.0.1...v1.0.2) (2026-08-16)
+
+
+### Bug Fixes
+
+* **test:** correct tautological assertion and close fixture file handle ([7f21a8f](https://github.com/martynvdijke/trmnl-opencode/commit/7f21a8f883130658beb0e7a6ba21588ff008577a))
+
 ## [1.0.1](https://github.com/martynvdijke/trmnl-opencode/compare/v1.0.0...v1.0.1) (2026-08-15)
 
 
