@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v6
         with:
-          python-version: "3.12"
+          python-version: "3.14"
       - run: python3 -m py_compile trmnl/usage/src/transform.py trmnl/limits/src/transform.py
       - run: python3 tests/test_transform.py
       - run: python3 tests/test_limits_transform.py
