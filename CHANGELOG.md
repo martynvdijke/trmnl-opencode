@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/martynvdijke/trmnl-opencode/compare/v1.0.3...v1.1.0) (2026-08-16)
+
+
+### Features
+
+* **trmnl:** add OpenCode Go usage limits plugin ([f2b6c84](https://github.com/martynvdijke/trmnl-opencode/commit/f2b6c8451faaecb91fed55898c2d5205fb537671))
+
 ## [1.0.3](https://github.com/martynvdijke/trmnl-opencode/compare/v1.0.2...v1.0.3) (2026-08-16)
 
 
