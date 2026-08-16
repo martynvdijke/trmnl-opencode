@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/martynvdijke/trmnl-opencode/compare/v1.1.3...v1.1.4) (2026-08-16)
+
+
+### Bug Fixes
+
+* **trmnl:** accept top-level Go usage responses ([ce5f0d7](https://github.com/martynvdijke/trmnl-opencode/commit/ce5f0d7732bd1ce2348fe3125a37dbe65b480d7b))
+
 ## [1.1.3](https://github.com/martynvdijke/trmnl-opencode/compare/v1.1.2...v1.1.3) (2026-08-16)
 
 ## [1.1.2](https://github.com/martynvdijke/trmnl-opencode/compare/v1.1.1...v1.1.2) (2026-08-16)
