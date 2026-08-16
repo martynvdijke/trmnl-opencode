@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/martynvdijke/trmnl-opencode/compare/v1.1.1...v1.1.2) (2026-08-16)
+
+
+### Bug Fixes
+
+* **trmnl:** handle empty poll responses in transforms ([c7c5e54](https://github.com/martynvdijke/trmnl-opencode/commit/c7c5e54a08b257359d4de445b3b5f3fa7f3fc3d0))
+
 ## [1.1.1](https://github.com/martynvdijke/trmnl-opencode/compare/v1.1.0...v1.1.1) (2026-08-16)
 
 
