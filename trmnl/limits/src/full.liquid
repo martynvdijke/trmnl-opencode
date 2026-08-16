@@ -1,0 +1,25 @@
+<div class="layout layout--col gap">
+  {% if error %}
+    <div class="item">
+      <div class="content">
+        <span class="value value--medium">{{ error }}</span>
+      </div>
+    </div>
+  {% else %}
+    {% for item in limits %}
+      <div class="item">
+        <div class="content">
+          <span class="label text--{{ item.level }}">{{ item.label }}</span>
+          <span class="value value--medium text--{{ item.level }}">{{ item.percent }}%</span>
+          <div class="meta">
+            <span class="label">{{ item.status_label }} · resets in {{ item.resets_in }} · {{ item.resets_at }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="hr"></div>
+    {% endfor %}
+  {% endif %}
+  <div class="title_bar">
+    <span class="title">OpenCode Go Limits · {{ generated_at }} · {{ timezone }}</span>
+  </div>
+</div>

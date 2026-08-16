@@ -5,13 +5,17 @@ or:       python3 tests/test_transform.py
 """
 
 import datetime
+import importlib.util
 import json
 import os
-import sys
 import unittest
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "trmnl", "src"))
-import transform  # noqa: E402
+_USAGE_DIR = os.path.join(os.path.dirname(__file__), "..", "trmnl", "usage", "src")
+_spec = importlib.util.spec_from_file_location(
+    "usage_transform", os.path.join(_USAGE_DIR, "transform.py")
+)
+transform = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(transform)
 
 FIXTURE = os.path.join(os.path.dirname(__file__), "fixture.json")
 

@@ -106,35 +106,40 @@ jobs:
       - name: Install trmnl_preview
         run: gem install trmnl_preview
 
-      - name: Lint TRMNL plugin
-        working-directory: trmnl
-        run: trmnlp lint
-
-      - name: Bootstrap or require TRMNL plugin ID
-        working-directory: trmnl
+      - name: Lint TRMNL plugins
         run: |
-          plugin_id=$(ruby -e 'require "yaml"; puts YAML.load_file("src/settings.yml")["id"].to_s.strip')
-          if [ -n "$plugin_id" ]; then
-            echo "TRMNL plugin ID: $plugin_id"
-            exit 0
-          fi
+          for d in trmnl/*/; do
+            echo "Linting $d"
+            trmnlp lint --dir "$d"
+          done
 
-          echo "::warning::No plugin ID set in src/settings.yml. Creating a new TRMNL plugin..."
-          output=$(trmnlp push --force 2>&1 || true)
-          echo "$output"
-          new_id=$(printf '%s\n' "$output" | grep -oE '/plugin_settings/[0-9]+/edit' | grep -oE '[0-9]+' | tail -1)
-          if [ -n "$new_id" ]; then
-            echo "::error::Created TRMNL plugin with ID $new_id. Add 'id: $new_id' to src/settings.yml and commit it so future pushes update this plugin instead of creating new ones."
+      - name: Bootstrap or require TRMNL plugin IDs
+        run: |
+          for dir in trmnl/usage trmnl/limits; do
+            file="$dir/src/settings.yml"
+            plugin_id=$(ruby -e 'require "yaml"; puts YAML.load_file(ARGV[0])["id"].to_s.strip' "$file")
+            if [ -n "$plugin_id" ]; then
+              echo "$file: TRMNL plugin ID: $plugin_id"
+              continue
+            fi
+            echo "::warning::$file has no plugin ID set. Creating a new TRMNL plugin..."
+            output=$(trmnlp push --force --dir "$dir" 2>&1 || true)
+            echo "$output"
+            new_id=$(printf '%s\n' "$output" | grep -oE '/plugin_settings/[0-9]+/edit' | grep -oE '[0-9]+' | tail -1)
+            if [ -n "$new_id" ]; then
+              echo "::error::$file: Created TRMNL plugin with ID $new_id. Add 'id: $new_id' to $file and commit it so future pushes update this plugin instead of creating new ones."
+              exit 1
+            fi
+            echo "::error::$file: Could not extract the created plugin ID from the push output. Check the TRMNL dashboard for the new plugin and set its ID in $file."
             exit 1
-          fi
-          echo "::error::Could not extract the created plugin ID from the push output. Check the TRMNL dashboard for the new plugin and set its ID in src/settings.yml."
-          exit 1
+          done
         env:
           TRMNL_API_KEY: ${{ secrets.TRML_TOKEN }}
 
-      - name: Push TRMNL plugin
-        working-directory: trmnl
-        run: trmnlp push --force
+      - name: Push TRMNL plugins
+        run: |
+          trmnlp push --force --dir trmnl/usage
+          trmnlp push --force --dir trmnl/limits
         env:
           TRMNL_API_KEY: ${{ secrets.TRML_TOKEN }}
 

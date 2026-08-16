@@ -1,0 +1,48 @@
+---
+strategy: polling
+no_screen_padding: 'no'
+dark_mode: 'no'
+static_data: ''
+polling_verb: get
+framework_version: 2.3.7
+serverless_language: python
+polling_url: 'https://opencode.ai/zen/go/v1/usage'
+polling_headers: 'Authorization=Bearer {{api_key}}'
+polling_body: ''
+id:
+oauth_enabled: 'false'
+oauth_pkce_enabled: 'no'
+oauth_authorize_url: ''
+oauth_token_url: ''
+oauth_scopes: ''
+oauth_scope_separator: ''
+oauth_refresh_url: ''
+oauth_auth_params: ''
+oauth_token_headers: ''
+oauth_token_site: ''
+oauth_token_params: ''
+oauth_token_request_auth_method: ''
+oauth_body_format: ''
+oauth_token_response_metadata: ''
+oauth_authorization_method: ''
+oauth_refresh_params: ''
+oauth_token_field_name: ''
+oauth_expiry_field_name: ''
+oauth_expiry_strategy: ''
+oauth_fixed_expiry_ms: ''
+custom_fields:
+- keyname: api_key
+  field_type: text
+  name: OpenCode Go API key
+  description: API token
+  placeholder: Your OpenCode Go API key
+  help_text: 'Copy from opencode.ai/auth — the key that authenticates with the OpenCode Go gateway'
+- keyname: timezone
+  field_type: text
+  name: Timezone
+  description: IANA timezone name
+  placeholder: Europe/Amsterdam
+  help_text: 'Used to show when each limit resets in local time'
+name: OpenCode Go Limits
+description: 'OpenCode Go usage limits'
+refresh_interval: 60

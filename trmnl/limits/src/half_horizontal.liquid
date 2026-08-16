@@ -1,0 +1,31 @@
+<div class="layout layout--col gap">
+  {% if error %}
+    <div class="item">
+      <div class="content">
+        <span class="value value--medium">{{ error }}</span>
+      </div>
+    </div>
+  {% else %}
+    <div class="columns">
+      <div class="column">
+        <span class="value value--large text--{{ worst_level }}">{{ worst_percent }}%</span>
+        <div class="meta">
+          <span class="label">{{ worst_label }}</span>
+        </div>
+        <div class="meta">
+          <span class="label">{{ worst_status }} · resets in {{ worst_resets_in }}</span>
+        </div>
+      </div>
+      <div class="column">
+        {% for item in limits %}
+          <div class="meta">
+            <span class="label text--{{ item.level }}">{{ item.label }} {{ item.percent }}%</span>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+  <div class="title_bar">
+    <span class="title">Go Limits · {{ generated_at }}</span>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="layout layout--col gap">
+  {% if error %}
+    <div class="item">
+      <div class="content">
+        <span class="value value--medium">{{ error }}</span>
+      </div>
+    </div>
+  {% else %}
+    {% for item in limits %}
+      <div class="item">
+        <div class="content">
+          <span class="label text--{{ item.level }}">{{ item.label }}</span>
+          <span class="value value--small text--{{ item.level }}">{{ item.percent }}%</span>
+          <div class="meta">
+            <span class="label">{{ item.status_label }} · resets in {{ item.resets_in }}</span>
+          </div>
+        </div>
+      </div>
+      {% unless forloop.last %}<div class="hr"></div>{% endunless %}
+    {% endfor %}
+  {% endif %}
+  <div class="title_bar">
+    <span class="title">Go Limits · {{ generated_at }}</span>
+  </div>
+</div>
