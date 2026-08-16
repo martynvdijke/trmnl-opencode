@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/martynvdijke/trmnl-opencode/compare/v1.1.4...v1.1.5) (2026-08-16)
+
+
+### Bug Fixes
+
+* **trmnl:** stretch Go limits layout across screen ([a43623b](https://github.com/martynvdijke/trmnl-opencode/commit/a43623b0cd41abe63f53e4762d5ff219898ae3c5))
+
 ## [1.1.4](https://github.com/martynvdijke/trmnl-opencode/compare/v1.1.3...v1.1.4) (2026-08-16)
 
 
