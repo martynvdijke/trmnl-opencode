@@ -58,8 +58,9 @@ class TransformTest(unittest.TestCase):
         for item in out["hourly"] + out["daily"] + out["monthly"]:
             self.assertIn("pct", item)
             self.assertTrue(0 <= item["pct"] <= 100)
-        # buckets are ordered oldest -> newest
-        self.assertEqual(out["hourly"][0]["label"], out["hourly"][0]["label"])
+        # bucket labels use the configured format (zero-padded HH:MM)
+        for item in out["hourly"]:
+            self.assertRegex(item["label"], r"^\d{2}:\d{2}$")
 
     def test_aggregates_are_monotonic(self):
         out = transform.run(_input(FIXTURE))
@@ -68,7 +69,9 @@ class TransformTest(unittest.TestCase):
         counts = [t["sessions"] for t in totals]
         self.assertEqual(counts, sorted(counts))
         # All-time matches the fixture sum
-        self.assertEqual(counts[3], len(json.load(open(FIXTURE))["data"]))
+        with open(FIXTURE) as fh:
+            fixture_data = json.load(fh)["data"]
+        self.assertEqual(counts[3], len(fixture_data))
 
     def test_missing_model_and_tokens_tolerated(self):
         out = transform.run(_input(FIXTURE))
