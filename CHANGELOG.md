@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/martynvdijke/trmnl-opencode/compare/v1.0.2...v1.0.3) (2026-08-16)
+
+
+### Bug Fixes
+
+* **trmnl:** pin plugin id 444114 ([3523f46](https://github.com/martynvdijke/trmnl-opencode/commit/3523f46bb7ed04c13eb722db155294f25f5eacc1))
+
 ## [1.0.2](https://github.com/martynvdijke/trmnl-opencode/compare/v1.0.1...v1.0.2) (2026-08-16)
 
 
